@@ -1,0 +1,2 @@
+data/obs_processed_2003_2018.nc filter=lfs diff=lfs merge=lfs -text
+data/era5_processed_2003_2018.nc filter=lfs diff=lfs merge=lfs -text
