@@ -48,6 +48,24 @@ def get_metric_kwargs():
     }
 
 
+def h_a25(data):
+    '''
+    Adams+ 2025
+    https://doi.org/10.3847/1538-4357/ada3c8
+    Habitability based on 'liquid water' temperatures 0-100C
+    and precipitation 300mm per Earth year
+    '''
+    return xarray.where(
+        (
+            (data['tas'] >= 273.15) &
+            (data['tas'] <= 373.15) &
+            (data['pr'] >= (300.0 / (365.0 * 24 * 60 * 60)))
+        ),
+        2,
+        1
+    )
+
+
 def h_dg19h(data):
     '''
     Del Genio+ 2019
@@ -135,7 +153,7 @@ def h_s08(data):
     Spiegel+ 2008 / Jansen+ 2019
     doi.org/10.1086/588089
     doi.org/10.3847/1538-4357/ab113d
-    Habitability based on 'Liquid water' temperatures 0-100C
+    Habitability based on 'liquid water' temperatures 0-100C
     '''
     return xarray.where(
         (data['tas'] >= 273.15) & (data['tas'] <= 373.15),
@@ -157,21 +175,9 @@ def h_s16(data):
     )
 
 
-def h_s19(data):
+def h_w25(data, t_unit='K'):
     '''
-    Stevenson 2019
-    doi.org/10.1017/S1473550419000181
-    Complex habitability based on biotemperature 4.5-30C
-    '''
-    return xarray.where(
-        (data['tbio'] > 277.65) & (data['tbio'] < 303.15),
-        3,
-        1
-    )
-
-def h_w24(data, t_unit='K'):
-    '''
-    Woodward+ 2024
+    Woodward+ 2025
     Complex + microbial habitability based on
     temperature, precipitation, and evaporation
 
@@ -180,7 +186,7 @@ def h_w24(data, t_unit='K'):
     - pr, evspsbl: kg m2 s-1 (equiv to mm s-1)
     '''
     # Apply temperature filter
-    hab_area_tas = h_w24_tas(data['tas'], t_unit)
+    hab_area_tas = h_w25_tas(data['tas'], t_unit)
     if (type(hab_area_tas) == type(None)):
         return None
 
@@ -189,7 +195,7 @@ def h_w24(data, t_unit='K'):
 
     # Apply net precipitation filter if data provided
     if 'pr' in data and 'evspsbl' in data:
-        hab_area_prnet = h_w24_water(
+        hab_area_prnet = h_w25_water(
             data['pr'],
             data['evspsbl']
         )
@@ -209,7 +215,7 @@ def h_w24(data, t_unit='K'):
     return hab_area
 
 
-def h_w24_water(data_pr, data_evspsbl):
+def h_w25_water(data_pr, data_evspsbl):
     data_prnet = data_pr - data_evspsbl
     pr_min = 250.0 / (365.0 * 24 * 60 * 60)
 
@@ -218,7 +224,7 @@ def h_w24_water(data_pr, data_evspsbl):
     )
 
 
-def h_w24_tas(data_tas, t_unit='K'):
+def h_w25_tas(data_tas, t_unit='K'):
     if t_unit not in ['C', 'K']:
         print('Provide temperature unit `C` or `K`.')
         return None

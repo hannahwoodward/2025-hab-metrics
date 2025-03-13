@@ -1,6 +1,20 @@
 import numpy as np
+import pandas as pd
 import regionmask
 import xesmf
+
+
+def calc_slice_monthly_climatology(
+    data,
+    year_start,
+    year_end
+):
+    return data\
+        .sel(time=slice(f'{year_start}-01-01', f'{year_end}-12-31'))\
+        .groupby('time.month')\
+        .mean('time')\
+        .chunk(dict(month=-1))\
+        .compute()
 
 
 def mask_to_land(data):

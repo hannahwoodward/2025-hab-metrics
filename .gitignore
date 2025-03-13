@@ -6,8 +6,7 @@ __pycache__
 .ipynb_checkpoints
 
 # Source data
-data/era5_2003_2018.nc
 data/HadISST_ice.nc
 data/ndvi
 data/oc-cci-chla
-
+data/era5-surface-2003-2018
