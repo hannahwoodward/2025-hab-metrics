@@ -1,5 +1,6 @@
 # A novel metric for assessing climatological surface habitability
 
+[![DOI](https://zenodo.org/badge/825011058.svg)](https://doi.org/10.5281/zenodo.15870060)
 [![arXiv preprint](https://img.shields.io/badge/arXiv-2407.05838-red "arXiv preprint")](https://arxiv.org/abs/2407.05838)
 
 ## Summary
