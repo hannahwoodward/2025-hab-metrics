@@ -4,8 +4,9 @@
 
 ## Summary
 
-* This repository contains the code used to create the figures and perform the analysis in [https://arxiv.org/abs/2407.05838](https://arxiv.org/abs/2407.05838)
-* Note that the pre-processed data output from [1-preprocess.ipynb](https://github.com/hannahwoodward/2024-hab-metrics/blob/main/1-preprocess.ipynb) is stored in [/data](https://github.com/hannahwoodward/2024-hab-metrics/tree/main/data) which can be used to directly re-create the figures in [2-figures.ipynb](https://github.com/hannahwoodward/2024-hab-metrics/blob/main/2-figures.ipynb) 
+* This repository is for the paper 'A novel metric for assessing climatological surface habitability' by Hannah L. Woodward. It is associated with the manuscript number AAS63510.
+* This repository contains all the code used to pre-process the data, create the figures, and perform the analysis.
+* The pre-processed data output is also stored within this repository (from [1-preprocess.ipynb](https://github.com/hannahwoodward/2024-hab-metrics/blob/main/1-preprocess.ipynb)) and is stored in [/data](https://github.com/hannahwoodward/2024-hab-metrics/tree/main/data) which can be used to directly re-create the figures in [2-figures.ipynb](https://github.com/hannahwoodward/2024-hab-metrics/blob/main/2-figures.ipynb).
 
 
 ## Steps to reproduce figures
